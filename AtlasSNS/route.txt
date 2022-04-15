@@ -1,0 +1,16 @@
++--------+----------+---------------+------+-------------------------------------------------------+--------------+
+| Domain | Method   | URI           | Name | Action                                                | Middleware   |
++--------+----------+---------------+------+-------------------------------------------------------+--------------+
+|        | GET|HEAD | added         |      | App\Http\Controllers\Auth\RegisterController@added    | web,guest    |
+|        | POST     | added         |      | App\Http\Controllers\Auth\RegisterController@added    | web,guest    |
+|        | GET|HEAD | api/user      |      | Closure                                               | api,auth:api |
+|        | GET|HEAD | follow-list   |      | App\Http\Controllers\PostsController@index            | web          |
+|        | GET|HEAD | follower-list |      | App\Http\Controllers\PostsController@index            | web          |
+|        | GET|HEAD | login         |      | App\Http\Controllers\Auth\LoginController@login       | web,guest    |
+|        | POST     | login         |      | App\Http\Controllers\Auth\LoginController@login       | web,guest    |
+|        | GET|HEAD | profile       |      | App\Http\Controllers\UsersController@profile          | web          |
+|        | GET|HEAD | register      |      | App\Http\Controllers\Auth\RegisterController@register | web,guest    |
+|        | POST     | register      |      | App\Http\Controllers\Auth\RegisterController@register | web,guest    |
+|        | GET|HEAD | search        |      | App\Http\Controllers\UsersController@index            | web          |
+|        | GET|HEAD | top           |      | App\Http\Controllers\PostsController@index            | web          |
++--------+----------+---------------+------+-------------------------------------------------------+--------------+
