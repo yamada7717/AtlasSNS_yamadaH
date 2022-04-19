@@ -1,21 +1,25 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
     /**
-     * データベースの初期設定を実行
+     * Run the database seeds.
      *
      * @return void
      */
-    // public function run()
-    // {
-    //     DB::table('users')->insert([
-    //         'name' => 'admin',
-    //         'email' => 'test@test.com',
-    //         'password' => bcrypt('password'),
-    //     ]);
-    // }
+    public function run()
+    {
+       \DB::table('users')->insert([
+            [
+                'id' => '',//空にしているが、講師の人に確認する
+                'username' => 'Atlas_SNS君',
+                'mail' => 'Atlas_SNS@example.com',
+                'password' => Hash::make('Atlas-sns'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]
+        ]);
+    }
 }
