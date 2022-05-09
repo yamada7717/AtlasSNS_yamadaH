@@ -12,23 +12,27 @@ use App\Post;
 class PostsController extends Controller
 {
     public function index(){
-    //ログインした際にusersTBからidとnameを取得
         $users = DB::table('users')->get();
         return view('posts.index', compact('users'));
     }
 
     public function create(Request $request){
-        // $post_tweet = $request->input('post_tweet');
+        // $post = $request->input('post_tweet');
         // \DB::table('posts')->insert([
-        //     'post_tweet' => $post_tweet
+        //     'post' => $post
         // ]);
          $post = new Post();
         $validator = $request->validate([
-            'post_tweet' => 'required|string|min:1|max:200',
+            'post_tweet' => 'required|string|min:2|max:200',
         ]);
-        $post->post_tweet = $request->post_tweet;
+        //ログインユーザーを認識させる
+        $post->user_id = Auth::user()->id;
+        //フォームのnameをpostカラムに登録
+        $post->post = $request->post_tweet;
         $post->save();
-        return redirect('/index');
+
+        $list = $post->all();
+        return redirect('/top', compact('list'));
     }
 
     public function __construct()

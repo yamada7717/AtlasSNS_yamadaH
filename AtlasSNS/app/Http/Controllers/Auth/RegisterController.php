@@ -85,6 +85,7 @@ class RegisterController extends Controller
             $validatedData = $request->validate([
             'username' => 'required|string|min:2|max:12',
             'mail' => 'required|string|email|min:5|max:40|unique:users',
+            //パスワードの値が一致しませんってなる
             'password' => 'required|string|min:8|max:20|confirmed',
     ]);
             $data = $request->input();
@@ -99,5 +100,5 @@ class RegisterController extends Controller
     {
         return view('auth.added');
     }
-    
+
 }

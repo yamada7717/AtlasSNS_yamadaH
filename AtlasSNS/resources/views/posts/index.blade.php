@@ -9,7 +9,16 @@
   <div class="form_grope">
     <input type=" text" name="post_tweet" placeholder="投稿内容を入れてください">
     <input type="image" src="images/post.png" alt="送信する" name="post_tweet" class="form_post-img">
-    <button type="submit" class="post_btn"><img src="images/post.png"></button>
   </div>
 </form>
+<!-- エラーメッセージ表示 -->
+@if ($errors->any())
+<div class="alert alert-danger">
+  <ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
 @endsection
