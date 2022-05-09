@@ -14,6 +14,9 @@ class PostsController extends Controller
     public function index(){
         $users = DB::table('users')->get();
         return view('posts.index', compact('users'));
+
+        $lists = DB::table('posts')->get();
+        return view('posts.index', ['lists' => $lists]);
     }
 
     public function create(Request $request){
@@ -21,18 +24,16 @@ class PostsController extends Controller
         // \DB::table('posts')->insert([
         //     'post' => $post
         // ]);
-         $post = new Post();
+        $post = new Post();
         $validator = $request->validate([
             'post_tweet' => 'required|string|min:2|max:200',
         ]);
-        //ログインユーザーを認識させる
+        //ログインユーザー情報を取得する
         $post->user_id = Auth::user()->id;
         //フォームのnameをpostカラムに登録
         $post->post = $request->post_tweet;
         $post->save();
-
-        $list = $post->all();
-        return redirect('/top', compact('list'));
+        return redirect('/top');
     }
 
     public function __construct()

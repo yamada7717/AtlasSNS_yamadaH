@@ -11,6 +11,23 @@
     <input type="image" src="images/post.png" alt="送信する" name="post_tweet" class="form_post-img">
   </div>
 </form>
+<!-- つぶやきの表示 -->
+<div class="">
+  <table class='table table-hover'>
+    <tr>
+      <th>投稿No</th>
+      <th>投稿内容</th>
+      <th>投稿日時</th>
+    </tr>
+    @foreach($lists as $list)
+    <tr>
+      <td>{{ $list->id }}</td>
+      <td>{{ $list->post }}</td>
+      <td>{{ $list->created_at }}</td>
+    </tr>
+    @endforeach
+  </table>
+</div>
 <!-- エラーメッセージ表示 -->
 @if ($errors->any())
 <div class="alert alert-danger">

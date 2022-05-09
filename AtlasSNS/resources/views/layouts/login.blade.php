@@ -76,10 +76,6 @@
       <p class="btn"><a href="">ユーザー検索</a></p>
     </div>
   </div>
-  <!-- つぶやきの表示 -->
-  <div class="">
-    {{$list}}
-  </div>
   <footer>
   </footer>
   <!--jQery 読み込み -->
