@@ -20,7 +20,7 @@
 
 
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
+Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
@@ -30,7 +30,10 @@ Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
+Route::group(['middleware' => 'auth'], function() {
+
 Route::get('/top','PostsController@index');
+Route::post('/create','PostsController@create');
 
 Route::get('/profile','UsersController@profile');
 
@@ -38,3 +41,8 @@ Route::get('/search','UsersController@index');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
+});
+
+//ログアウトした時ログイン画面に遷移する
+Route::get('/logout', 'Auth\LoginController@logout');
+//新規登録した際にバリデーションの適用

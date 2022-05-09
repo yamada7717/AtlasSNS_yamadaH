@@ -14,6 +14,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    // username, mail, passwordカラムにデータの挿入を許可する
     protected $fillable = [
         'username', 'mail', 'password',
     ];
