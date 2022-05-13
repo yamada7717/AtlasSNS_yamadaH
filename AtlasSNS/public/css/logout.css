@@ -5,6 +5,6 @@ html{
 }
 
 body{
-    height: 100%;
-    background: #186AC9;
+  background: rgb(254, 255, 0);
+  background: linear-gradient(0deg, rgba(254, 255, 0, 1) 0%, rgba(45, 143, 253, 1) 63%);
 }

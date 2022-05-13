@@ -33,6 +33,9 @@ Route::post('/added', 'Auth\RegisterController@added');
 Route::group(['middleware' => 'auth'], function() {
 
 Route::get('/top','PostsController@index');
+//デリート
+Route::get('post/{id}/delete','PostsController@delete');
+Route::get('post/{id}/delete','PostsController@delete');
 Route::post('/create','PostsController@create');
 
 Route::get('/profile','UsersController@profile');

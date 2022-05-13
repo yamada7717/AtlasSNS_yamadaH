@@ -60,7 +60,7 @@ body {}
     z-index: 100;
     position: absolute;
     /* ヘッダーの高さと同じする */
-    top: 68px;
+    top: 76px;
     right: 5%;
     transform: translateX(50%);
     border: 2px solid #186AC9;
@@ -84,7 +84,7 @@ body {}
 
 
 .profile {
-    background: #186AC9;
+    background: #0D297E;
     text-align: center;
     color: #fff;
 }
@@ -131,4 +131,9 @@ body {}
 
 .side_bar_item {
     border-left: 1px solid #727272;
+}
+
+/* モーダル機能 */
+.selector-for-some-widget {
+    box-sizing: content-box;
 }

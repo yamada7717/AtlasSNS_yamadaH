@@ -12,11 +12,9 @@ use App\Post;
 class PostsController extends Controller
 {
     public function index(){
-        $users = DB::table('users')->get();
-        return view('posts.index', compact('users'));
-
-        $lists = DB::table('posts')->get();
-        return view('posts.index', ['lists' => $lists]);
+        $lists = Post::get();
+        // dd($lists);
+        return view('posts.index')->with(['lists' => $lists]);
     }
 
     public function create(Request $request){
@@ -33,6 +31,15 @@ class PostsController extends Controller
         //フォームのnameをpostカラムに登録
         $post->post = $request->post_tweet;
         $post->save();
+        return redirect('/top')->with('message','投稿完了');
+    }
+
+      public function delete($id)
+    {
+        \DB::table('posts')
+            ->where('id', $id)
+            ->delete();
+
         return redirect('/top');
     }
 
