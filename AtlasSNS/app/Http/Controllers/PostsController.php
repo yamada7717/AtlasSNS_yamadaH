@@ -33,7 +33,10 @@ class PostsController extends Controller
         return redirect('/top')->with('message','投稿完了');
     }
 
-      public function delete($id)
+    //投稿のアップデート
+
+    //投稿の削除
+    public function delete($id)
     {
         \DB::table('posts')
             ->where('id', $id)
@@ -41,6 +44,14 @@ class PostsController extends Controller
 
         return redirect('/top');
     }
+
+    // Postモデル経由でpostsテーブルのレコードを取得
+    public function show(){
+
+    $posts = Post::get();
+    return view('/search', compact('posts'));
+    }
+
 
     public function __construct()
     {
