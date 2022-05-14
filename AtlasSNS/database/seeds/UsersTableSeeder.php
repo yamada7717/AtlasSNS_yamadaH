@@ -13,7 +13,6 @@ class UsersTableSeeder extends Seeder
     {
        \DB::table('users')->insert([
             [
-                'id' => '',//空にしているが、講師の人に確認する
                 'username' => 'Atlas_SNS君',
                 'mail' => 'Atlas_SNS@example.com',
                 'password' => Hash::make('Atlas-sns'),

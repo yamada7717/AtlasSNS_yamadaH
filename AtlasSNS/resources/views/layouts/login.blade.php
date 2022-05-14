@@ -67,16 +67,17 @@
           <p>フォロー数</p>
           <p>〇〇名</p>
         </div>
-        <p class="btn btn-primary"><a href="">フォローリスト</a></p>
+        <p class="btn btn-primary"><a href="/followList">フォローリスト</a></p>
         <div>
           <p>フォロワー数</p>
           <p>〇〇名</p>
         </div>
-        <p class="btn btn-primary"><a href="">フォロワーリスト</a></p>
+        <p class="btn btn-primary"><a href="/followerList">フォロワーリスト</a></p>
       </div>
-      <p class="btn btn-primary"><a href="">ユーザー検索</a></p>
+      <p class="btn btn-primary"><a href="/search">ユーザー検索</a></p>
     </div>
   </div>
+  <!-- ユーザーの一覧表示  -->
   <footer>
   </footer>
   <!--jQery 読み込み -->

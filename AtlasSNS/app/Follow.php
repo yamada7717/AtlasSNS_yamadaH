@@ -12,5 +12,7 @@ class Follow extends Model
         'followed_id',
     ];
 
-    protected $table = 'follows';
+     public function users(){
+    return  $this->belongsToMany('App\User');
+    }
 }

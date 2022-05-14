@@ -13,7 +13,6 @@ class PostsController extends Controller
 {
     public function index(){
         $lists = Post::get();
-        // dd($lists);
         return view('posts.index')->with(['lists' => $lists]);
     }
 

@@ -49,16 +49,6 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
 
-     //新規登録時におけるばリデーショ適用場
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'username' => 'required|string|min:2|max:12',
-            'mail' => 'required|string|email|min:5|max:40|unique:users',
-            'password' => 'required|string|min:8|max:20|confirmed',
-        ]);
-    }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -75,18 +65,13 @@ class RegisterController extends Controller
         ]);
     }
 
-
-    // public function registerForm(){
-    //     return view("auth.register");
-    // }
-
     public function register(Request $request){
         if($request->isMethod('post')){
             $validatedData = $request->validate([
             'username' => 'required|string|min:2|max:12',
             'mail' => 'required|string|email|min:5|max:40|unique:users',
-            //パスワードの値が一致しませんってなる
             'password' => 'required|string|min:8|max:20|confirmed',
+            //パスワードの値が一致しませんってなる
     ]);
             $data = $request->input();
             $this->create($data);

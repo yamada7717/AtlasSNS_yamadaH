@@ -36,14 +36,15 @@ Route::get('/top','PostsController@index');
 //デリート
 Route::get('post/{id}/delete','PostsController@delete');
 Route::get('post/{id}/delete','PostsController@delete');
+
 Route::post('/create','PostsController@create');
 
 Route::get('/profile','UsersController@profile');
 
 Route::get('/search','UsersController@index');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('/followList','FollowsController@followList');
+Route::get('/followerList','FollowsController@followerList');
 });
 
 //ログアウトした時ログイン画面に遷移する
