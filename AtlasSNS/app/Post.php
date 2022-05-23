@@ -13,4 +13,17 @@ class Post extends Model
         'username'
 
     ];
+    //Userモデルと1対多のリレーション
+    public function user(){
+        return  $this->belongsTo('App\User');
+    }
+
+
+    public function follows(){
+        return $this->belongsToMany('App\User', 'follows', 'following_id', 'followed_id');
+    }
+    // フォロワー→フォロー
+    public function followUsers(){
+        return $this->belongsToMany('App\User', 'follows', 'followed_id', 'following_id');
+    }
 }

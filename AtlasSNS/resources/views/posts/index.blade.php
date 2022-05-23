@@ -1,10 +1,13 @@
 @extends('layouts.login')
 
 @section('content')
+<!-- 投稿エリア -->
 <form action="{{ url('/create') }}" method="POST">
   @csrf
   <div class="form_img">
     <img src="images/icon1.png" alt="">
+  </div>
+  <div class="login_username">
   </div>
   <div class="form_grope">
     <input type=" text" name="post_tweet" placeholder="投稿内容を入れてください">
@@ -17,13 +20,16 @@
 @endif
 <div class="">
   <table class='table table-hover'>
-    @foreach($lists as $list)
+    @foreach($posts as $post)
     <tr>
-      <td> {{Auth::user()->username}}&nbsp;</td>
-      <td>{{ $list->post }}</td>
-      <td>{{ $list->created_at }}</td>
-      <td><a class="btn btn-primary" href="/post/{{$list->id}}/update-form">更新</a></td>
-      <td><a class="btn btn-danger" href="/post/{{$list->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"><img src="images/trash-h.png" alt="消去"></a></td>
+      <td>名前：{{ $post->user->username }}&nbsp;</td>
+      <td>投稿内容：{{ $post->post }}</td>
+      <td>{{ $post->created_at }}</td>
+      <!-- ログインユーザーのみ編集、削除ボタン表示 -->
+      @if(Auth::user()->id == $post->user_id)
+      <td><a class="btn btn-primary" href="/post/{{$post->id}}/update-form">更新</a></td>
+      <td><a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"><img src="images/trash-h.png" alt="消去"></a></td>
+      @endif
     </tr>
     @endforeach
   </table>

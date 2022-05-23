@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Follow;
 use App\User;
+use App\Post;
 
 class FollowsController extends Controller
 {
@@ -19,10 +20,6 @@ class FollowsController extends Controller
         return view('follows.followerList');
     }
 
-    public function search(){
-        return view('/search');
-    }
-
      // フォロー
     public function follow(User $user)
     {
@@ -31,7 +28,7 @@ class FollowsController extends Controller
         $is_following = $follower->isFollowing($user->id);
         if(!$is_following) {
             // フォローしていなければフォローする
-            $follower->follow($user->id);
+            $follower->follows($user->id);
             return back();
         }
     }

@@ -8,6 +8,7 @@
   <title></title>
   <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
   <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
   <!--スマホ,タブレット対応-->
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -19,7 +20,6 @@
   <!--iphoneのアプリアイコン指定-->
   <link rel="apple-touch-icon-precomposed" href="画像のURL" />
   <!--OGPタグ/twitterカード-->
-  <!--jQery 読み込み -->
 
 </head>
 <body>
@@ -50,7 +50,7 @@
             </ul>
           </div>
           <div class="header_nav_item">
-            <img src="images/arrow.png">
+            <img class="header_icon" src="images/icon1.png">
           </div>
         </div>
       </div>
@@ -77,7 +77,8 @@
       <p class="btn btn-primary"><a href="/search">ユーザー検索</a></p>
     </div>
   </div>
-  <!-- ユーザーの一覧表示  -->
+  <!--登録ユーザーの一覧表示  -->
+
   <footer>
   </footer>
   <!--jQery 読み込み -->

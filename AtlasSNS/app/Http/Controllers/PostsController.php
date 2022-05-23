@@ -6,36 +6,43 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 use App\Post;
+use App\Follow;
 
 
 class PostsController extends Controller
 {
     public function index(){
-        $lists = Post::get();
-        return view('posts.index')->with(['lists' => $lists]);
     }
 
+    //新規登録
     public function create(Request $request){
-        // $post = $request->input('post_tweet');
-        // \DB::table('posts')->insert([
-        //     'post' => $post
-        // ]);
         $post = new Post();
         $validator = $request->validate([
             'post_tweet' => 'required|string|min:2|max:200',
         ]);
         //ログインユーザー情報を取得する
         $post->user_id = Auth::user()->id;
-        //フォームのnameをpostカラムに登録
+        //フォームのnameをpostカラムに保存
         $post->post = $request->post_tweet;
         $post->save();
         return redirect('/top')->with('message','投稿完了');
     }
 
-    //投稿のアップデート
+    //投稿編集画面
+    public function edit($id)
+    {
+        //
+    }
 
-    //投稿の削除
+    // 投稿編集処理
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    //投稿削除
     public function delete($id)
     {
         \DB::table('posts')
@@ -45,13 +52,11 @@ class PostsController extends Controller
         return redirect('/top');
     }
 
-    // Postモデル経由でpostsテーブルのレコードを取得
+    //Postモデル経由でpostsテーブルのレコードを取得
     public function show(){
-
-    $posts = Post::get();
-    return view('/search', compact('posts'));
+        $posts = Post::get();
+        return view('posts.index', compact('posts'));
     }
-
 
     public function __construct()
     {

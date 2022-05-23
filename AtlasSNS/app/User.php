@@ -31,14 +31,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //Postモデルとリレーション
+    public function posts() //関数名は複数形がベスト
+    {
+    return $this->hasMany('App\Post');
+    }
+
+
     // フォロー→フォロワー
     public function follows()
     {
-        return $this->belongsToMany('App\User', 'follow', 'following_id', 'followed_id');
+        return $this->belongsToMany('App\User', 'follows', 'following_id', 'followed_id');
     }
     // フォロワー→フォロー
     public function followUsers()
     {
-        return $this->belongsToMany('App\User', 'follow', 'followed_id', 'following_id');
+        return $this->belongsToMany('App\User', 'follows', 'followed_id', 'following_id');
     }
+
 }

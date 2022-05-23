@@ -12,31 +12,37 @@ use App\Post;
 
 class UsersController extends Controller
 {
-    //
+    public function index(Request $request)
+    {
+
+    }
+
+    public function searchList(Request $request){
+        $keyword = $request->input('keyword');
+
+        $query = User::query();
+        if (!empty($keyword)) {
+            $query->where('username', 'LIKE', "%{$keyword}%");
+        }
+        $search = $query->get();
+        return view('users.search',['search'=>$search,'keyword'=>$keyword]);
+    }
+
     public function profile(){
         return view('users.profile');
     }
-    public function index(){
-        return view('users.search');
+
+    public function search(){
+        $users = User::get();
+        return view('users.search', compact('users'));
     }
 
-    //indexの引数の$userはメソッドインジェクション依存性の注入
-    public function follow(Request $request)
+        public function show(User $user)
     {
-        //Authユーザーの一覧をidで取得
-        $all_users = $request->getAllUsers(Auth::user()->id);
-
-        return view('posts.index', [
-            'all_users'  => $all_users
-        ]);
-
+        $user = User::find($user->id); //idが、リクエストされた$userのidと一致するuserを取得
+        $posts = Post::where('user_id', $user->id) //$userによる投稿を取得
+            ->orderBy('created_at', 'desc'); // 投稿作成日が新しい順に並べる
+        return view('users.search',compact('posts'));
     }
 
-    public function users(){
-        return  $this->hasMany('App\User');
-    }
-
-    public function posts(){
-    return  $this->hasMany('App\Post');
-    }
 }
