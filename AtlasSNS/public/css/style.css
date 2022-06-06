@@ -20,6 +20,7 @@ body {}
     justify-content: space-between;
     background: #186AC9;
     padding: 13px 25px;
+    align-items: baseline;
 }
 
 .header_nav_list {
@@ -40,6 +41,12 @@ body {}
     height: 40px;
 }
 
+.header_icon {
+    height: 50px;
+    width: 50px;
+
+}
+
 
 .ac>li {
     /* margin-bottomにすると変な動きをするのでpaddingにする */
@@ -58,7 +65,7 @@ body {}
     z-index: 100;
     position: absolute;
     /* ヘッダーの高さと同じする */
-    top: 76px;
+    top: 105px;
     right: 5%;
     transform: translateX(50%);
     border: 2px solid #186AC9;
@@ -132,6 +139,30 @@ body {}
 }
 
 /* モーダル機能 */
-.selector-for-some-widget {
-    box-sizing: content-box;
+/* 必要に応じて編集しご自身でSNS課題のレイアウトのようにカスタマイズしてください。 */
+
+
+.modal {
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.modal__bg {
+    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.modal__content {
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
 }

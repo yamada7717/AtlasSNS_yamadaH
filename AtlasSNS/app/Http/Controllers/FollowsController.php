@@ -20,30 +20,25 @@ class FollowsController extends Controller
         return view('follows.followerList');
     }
 
+
+
      // フォロー
-    public function follow(User $user)
-    {
-        $follower = Auth::user();
-        // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
-        if(!$is_following) {
-            // フォローしていなければフォローする
-            $follower->follows($user->id);
-            return back();
-        }
+    public function follow(Request $request){
+        $id = $request->input('user_id');
+        \DB::table('follows')->insert([
+            'following_id' => Auth::user()->id,
+            'followed_id'  => $id
+        ]);
+
+        return redirect('/search');
     }
 
-    // フォロー解除
-    public function unfollow(User $user)
+    public function unFollow(Request $request)
     {
-        $follower = Auth::user();
-        // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
-        if($is_following) {
-            // フォローしていればフォローを解除する
-            $follower->unfollow($user->id);
-            return back();
-        }
+        $id = $request->input('user_id');
+        Follow::where('following_id', Auth::user()->id)->where('followed_id',$id)->delete();
+
+        return redirect('/search');
     }
 
 }

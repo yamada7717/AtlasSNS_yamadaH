@@ -14,9 +14,11 @@ use App\Follow;
 class PostsController extends Controller
 {
     public function index(){
+        $posts = Post::get();
+        return view('posts.index', compact('posts'));
     }
 
-    //新規登録
+    //新規投稿
     public function create(Request $request){
         $post = new Post();
         $validator = $request->validate([
@@ -33,13 +35,28 @@ class PostsController extends Controller
     //投稿編集画面
     public function edit($id)
     {
-        //
+          $post = \DB::table('posts')
+            ->where('id', $id)
+            ->first();
+        return view('posts.index', compact('post'));
     }
 
-    // 投稿編集処理
-    public function update(Request $request, $id)
+    //
+    public function update(Request $request)
     {
-        //
+
+        $id = $request->input('id');
+        $upPost =  $request->validate([
+            'upPost' => 'string|max:150',
+        ]);
+        $upPost = $request->input('upPost');
+        \DB::table('posts')
+            ->where('id', $id)
+            ->update(
+                ['post' => $upPost]
+            );
+        return redirect('/top');
+
     }
 
     //投稿削除
@@ -52,11 +69,16 @@ class PostsController extends Controller
         return redirect('/top');
     }
 
-    //Postモデル経由でpostsテーブルのレコードを取得
+     //Postモデル経由でpostsテーブルのレコードを取得
     public function show(){
-        $posts = Post::get();
-        return view('posts.index', compact('posts'));
+    // フォローしているユーザーのidを取得
+        $following_id = Auth::user()->follows()->pluck('followed_id');
+
+    // フォローしているユーザーのidを元に投稿内容を取得
+        $posts = Post::with('user')->whereIn('user_id', $following_id)->get();
+        return redirect('/top',compact('posts'));
     }
+
 
     public function __construct()
     {
