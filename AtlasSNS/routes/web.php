@@ -33,7 +33,6 @@ Route::post('/added', 'Auth\RegisterController@added');
 //ログイン中のページ
 Route::group(['middleware' => 'auth'], function() {
 
-  Route::get('/top','PostsController@show');
   Route::get('/top','PostsController@index');
 
   //新規投稿
@@ -47,6 +46,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/profile','UsersController@profile');
   Route::get('/search','UsersController@search');
   Route::get('/searchList','UsersController@searchList');
+  Route::post('/updateProfile','UsersController@updateProfile');
+
+
 
   Route::get('/followList','FollowsController@followList');
   Route::get('/followerList','FollowsController@followerList');

@@ -19,12 +19,31 @@ class UsersController extends Controller
     }
 
     public function profile(){
-        return view('users.profile');
+        $user = \Auth::user();
+        return view('users.profile', compact('user'));
     }
 
-
-    public function index(Request $request)
+   //プロフィール更新
+    public function updateProfile(Request $request)
     {
+        //ログインユーザー情報 $user = new User();を取得する
+        $user = Auth::user();
+        $user->username = $request->username;
+        $user->mail = $request->mail;
+        $user->password = bcrypt($request->password);
+
+        $user->bio = $request->bio;
+        $user->images = $request->images;
+
+        if(request('image')){
+            $original = request()->file('image')->getClientOriginalName();
+            $name = date('Ymd_His').'_'.$original;
+            $file = request()->file('image')->move('storage/images',$name);
+            $user->image=$name;
+        }
+
+        $user->save();
+        return view('users.profile', compact('user'))->with('newProfile','更新完了しました');
 
     }
 //ユーザー検索

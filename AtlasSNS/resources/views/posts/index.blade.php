@@ -5,7 +5,7 @@
 <form action="{{ url('/create') }}" method="POST">
   @csrf
   <div class="form_img">
-    <img src="images/icon1.png" alt="">
+    <img src="{{asset('images/icon1.png')}}" alt="">
   </div>
   <div class="login_username">
   </div>
@@ -18,10 +18,14 @@
 @if(session('message'))
 <div class="alert alert-success">{{session('message')}}</div>
 @endif
+@if(session('NewProfile'))
+<div class="alert alert-success">{{session('newProfile')}}</div>
+@endif
 <div class="">
   <table class='table table-hover'>
     @foreach($posts as $post)
     <tr>
+      <td>名前：{{ $post->user->images }}&nbsp;</td>
       <td>名前：{{ $post->user->username }}&nbsp;</td>
       <td>投稿内容：{{ $post->post }}</td>
       <td>{{ $post->created_at }}</td>
@@ -43,7 +47,7 @@
       <form action="{{ url('/update/{id}') }}" method="POST">
         @csrf
         <textarea name="upPost" class="modal_post"></textarea>
-        <input type="hidden" id="{{$post->id}}" class="modal_id">
+        <input type="hidden" name='id' class="modal_id">
         <input type="image" src="images/edit.png" alt="更新する" name="upPost">
       </form>
       <a class="js-modal-close" href="">閉じる</a>

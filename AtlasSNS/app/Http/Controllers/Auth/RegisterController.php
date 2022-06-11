@@ -49,7 +49,7 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
 
-     //新規登録時におけるばリデーショ適用場
+     //新規登録時におけるバリデーショ適用
     protected function validator(array $data)
     {
         return Validator::make($data, [

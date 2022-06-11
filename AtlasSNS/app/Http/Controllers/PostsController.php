@@ -15,6 +15,12 @@ class PostsController extends Controller
 {
     public function index(){
         $posts = Post::get();
+     // フォローしているユーザーのidを取得
+        $following_id = Auth::user()->follows()->pluck('followed_id');
+
+    // フォローしているユーザーのidを元に投稿内容を取得
+        $posts = Post::with('user')->whereIn('user_id', $following_id,)->orWhere('user_id', Auth::user()->id)->get();
+
         return view('posts.index', compact('posts'));
     }
 
@@ -32,29 +38,14 @@ class PostsController extends Controller
         return redirect('/top')->with('message','投稿完了');
     }
 
-    //投稿編集画面
-    public function edit($id)
-    {
-          $post = \DB::table('posts')
-            ->where('id', $id)
-            ->first();
-        return view('posts.index', compact('post'));
-    }
-
-    //
+    //投稿更新
     public function update(Request $request)
     {
 
         $id = $request->input('id');
-        $upPost =  $request->validate([
-            'upPost' => 'string|max:150',
-        ]);
+        $upPost =  $request->validate(['upPost' => 'string|max:150']);
         $upPost = $request->input('upPost');
-        \DB::table('posts')
-            ->where('id', $id)
-            ->update(
-                ['post' => $upPost]
-            );
+        \DB::table('posts')->where('id', $id)->update(['post' => $upPost]);
         return redirect('/top');
 
     }
@@ -62,21 +53,9 @@ class PostsController extends Controller
     //投稿削除
     public function delete($id)
     {
-        \DB::table('posts')
-            ->where('id', $id)
-            ->delete();
+        \DB::table('posts')->where('id', $id)->delete();
 
         return redirect('/top');
-    }
-
-     //Postモデル経由でpostsテーブルのレコードを取得
-    public function show(){
-    // フォローしているユーザーのidを取得
-        $following_id = Auth::user()->follows()->pluck('followed_id');
-
-    // フォローしているユーザーのidを元に投稿内容を取得
-        $posts = Post::with('user')->whereIn('user_id', $following_id)->get();
-        return redirect('/top',compact('posts'));
     }
 
 
