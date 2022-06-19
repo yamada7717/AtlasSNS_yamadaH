@@ -5,31 +5,29 @@
   <div class="">
     <div class="">
       <div class="">
-        @if(!empty($user->images))
-        <div class="">{{$user->images}}</div>
-        @endif
+        <img src="{{ asset('images/' .  Auth::user()->images) }}" alt="ユーザーアイコンです">
         <div class="">
           <form action="/updateProfile" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- id 名前 -->
-            <input type="hidden" name="id" value="{{  $user->id }}" />
+            <input type="hidden" name="id" value="{{  $users->id }}" />
             <label for="username">user&nbsp;name</label>
-            <input type="text" id="username" name="username" value="{{ $user->username }}" />
+            <input type="text" id="username" name="username" value="{{ $users->username }}" />
             <!-- メール -->
             <label for="mail">mail&nbsp;address</label>
-            <input type="text" id="mail" name="mail" value="{{ $user->mail }}" />
+            <input type="text" id="mail" name="mail" value="{{ $users->mail }}" />
             <!-- パスワード -->
             <label for="password">password&nbsp;</label>
-            <input type="password" id="password" name="password" value="password" />
+            <input type="password" id="password" name="password" value="" />
             <!--パスワード確認 -->
             <label for="password_confirm">password&nbsp;</label>
-            <input type="password" id="password_confirm" name="password_confirm" value="password" /><br>
+            <input type="password" id="password_confirm" name="password_confirm" value="" /><br>
             <!-- 自己紹介 -->
             <label for="bio">bio</label>
-            <textarea id="bio" name="bio" value="{{ $user->bio  }}" class=""></textarea>
+            <input id="bio" name="bio" value="{{ $users->bio  }}" class="">
             <!-- アイコン -->
-            <label for="image">icon&nbsp;image</label>
-            <input type="image" id="image" name="image" value="ファイルを選択" class="icon_select" /><br>
+            <label for="images">icon&nbsp;image</label>
+            <input type="file" id="images" name="images" value="ファイルを選択" class="icon_select" /><br>
             <input type="submit" value="更新" />
           </form>
         </div>

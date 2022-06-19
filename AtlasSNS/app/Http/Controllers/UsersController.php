@@ -19,31 +19,28 @@ class UsersController extends Controller
     }
 
     public function profile(){
-        $user = \Auth::user();
-        return view('users.profile', compact('user'));
+        $users = Auth::user();
+        return view('users.profile', compact('users'));
     }
 
    //プロフィール更新
     public function updateProfile(Request $request)
     {
-        //ログインユーザー情報 $user = new User();を取得する
-        $user = Auth::user();
-        $user->username = $request->username;
-        $user->mail = $request->mail;
-        $user->password = bcrypt($request->password);
+        $users = Auth::user();
+        $users->username = $request->username;
+        $users->mail = $request->mail;
+        $users->password = bcrypt($request->password);
+        $users->bio = $request->bio;
 
-        $user->bio = $request->bio;
-        $user->images = $request->images;
-
-        if(request('image')){
-            $original = request()->file('image')->getClientOriginalName();
+        if($request->images){
+            $original = request()->file('images')->getClientOriginalName();
             $name = date('Ymd_His').'_'.$original;
-            $file = request()->file('image')->move('storage/images',$name);
-            $user->image=$name;
+            $file = $request->file('images')->move('storage/images' , $name);
+            $users->images=$name;
         }
 
-        $user->save();
-        return view('users.profile', compact('user'))->with('newProfile','更新完了しました');
+        $users->save();
+        return view('users.profile', compact('users'))->with('newProfile','更新完了しました');
 
     }
 //ユーザー検索
