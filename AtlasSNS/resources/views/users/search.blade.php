@@ -27,7 +27,7 @@
             <div class="">
               <div class="">
                 @if(Auth::user()->id != $user->id)
-                <div>ユーザー画像：{{ $user->images }}&nbsp;</div>
+                <div><img src="{{ asset('images/' .  $user->images) }}">&nbsp;</div>
                 <div>名前：{{ $user->username }}&nbsp;</div>
                 <img src="" class="rounded-circle">
                 <div class="d-flex justify-content-end flex-grow-1">

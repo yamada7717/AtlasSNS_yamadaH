@@ -19,10 +19,11 @@ class PostsController extends Controller
         $following_id = Auth::user()->follows()->pluck('followed_id');
 
     // フォローしているユーザーのidを元に投稿内容を取得
-        $posts = Post::with('user')->whereIn('user_id', $following_id,)->orWhere('user_id', Auth::user()->id)->get();
+        $posts = Post::with('user')->whereIn('user_id', $following_id)->orWhere('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
         return view('posts.index', compact('posts'));
     }
+
 
     //新規投稿
     public function create(Request $request){
@@ -34,6 +35,7 @@ class PostsController extends Controller
         $post->user_id = Auth::user()->id;
         //フォームのnameをpostカラムに保存
         $post->post = $request->post_tweet;
+
         $post->save();
         return redirect('/top')->with('message','投稿完了');
     }

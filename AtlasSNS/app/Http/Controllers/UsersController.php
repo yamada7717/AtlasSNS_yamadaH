@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+//ストレージファザード使用できるようになる
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Validation\ImplicitRule;
 use App\Follow;
 use App\User;
 use App\Post;
@@ -26,21 +30,36 @@ class UsersController extends Controller
    //プロフィール更新
     public function updateProfile(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            'username'  => 'required|min:2|max:12',
+            'mail' => ['required|min:5|max:40|mail', Rule::unique('users')->ignore(Auth::id())],
+            'password' => 'min:8|max:20|confirmed|alpha_num',
+            'password_confirmation' => 'min:8|max:20|alpha_num',
+            'bio' => 'max:150',
+            'images' => 'image||alpha_num',
+        ]);
+
+
         $users = Auth::user();
+        $validator->validate();
         $users->username = $request->username;
         $users->mail = $request->mail;
-        $users->password = bcrypt($request->password);
         $users->bio = $request->bio;
 
+        //パスワード確認
+        if($request->password){
+            $users->password = bcrypt($request->password);
+
+        }
+
         if($request->images){
-            $original = request()->file('images')->getClientOriginalName();
-            $name = date('Ymd_His').'_'.$original;
-            $file = $request->file('images')->move('storage/images' , $name);
-            $users->images=$name;
+            $original = $request->file('images')->getClientOriginalName();
+            $file = $request->file('images')->move('storage/images' , $original);
+            $users->images = $original;
         }
 
         $users->save();
-        return view('users.profile', compact('users'))->with('newProfile','更新完了しました');
+        return redirect('/top')->with('newProfile','更新完了しました');
 
     }
 //ユーザー検索

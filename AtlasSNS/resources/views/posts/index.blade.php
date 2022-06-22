@@ -5,7 +5,7 @@
 <form action="{{ url('/create') }}" method="POST">
   @csrf
   <div class="form_img">
-    <img src="{{asset('images/icon1.png')}}" alt="">
+    <img src="{{ asset('images/' .  Auth::user()->images) }}" alt="ユーザーアイコン">&nbsp;
   </div>
   <div class="login_username">
   </div>
@@ -18,22 +18,30 @@
 @if(session('message'))
 <div class="alert alert-success">{{session('message')}}</div>
 @endif
-@if(session('NewProfile'))
+@if(session('newProfile'))
 <div class="alert alert-success">{{session('newProfile')}}</div>
 @endif
 <div class="">
   <table class='table table-hover'>
     @foreach($posts as $post)
     <tr>
-      <td>名前：{{ $post->user->images }}&nbsp;</td>
-      <td>名前：{{ $post->user->username }}&nbsp;</td>
-      <td>投稿内容：{{ $post->post }}</td>
+      <td><img src="{{ asset('images/' .  $post->user->images) }}">&nbsp;</td>
+      <td>{{ $post->user->username }}&nbsp;</td>
+      <td>{{ $post->post }}</td>
       <td>{{ $post->created_at }}</td>
       <!-- ログインユーザーのみ編集、削除ボタン表示 -->
       @if(Auth::user()->id == $post->user_id)
       <div class="content">
-        <td><a class="btn btn-primary js-modal-open" href="/edit/{{$post->id}}" post_id="{{$post->id}}" post="{{$post->post}}">更新</a></td>
-        <td><a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"><img src="images/trash-h.png" alt="消去"></a></td>
+        <td>
+          <a class="btn js-modal-open" href="/edit/{{$post->id}}" post_id="{{$post->id}}" post="{{$post->post}}">
+            <img src="images/edit.png" alt="編集ボタン">
+          </a>
+        </td>
+        <td>
+          <a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">
+            <img src="images/trash-h.png" alt="消去">
+          </a>
+        </td>
       </div>
       @endif
     </tr>

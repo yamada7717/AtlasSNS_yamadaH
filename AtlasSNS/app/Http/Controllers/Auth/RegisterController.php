@@ -83,7 +83,8 @@ class RegisterController extends Controller
 
     public function register(Request $request){
         if($request->isMethod('post')){
-            $validatedData = $request->validate([
+            $request->validate([
+                //バリデーションの適用
             ]);
             $data = $request->input();
             $this->create($data);

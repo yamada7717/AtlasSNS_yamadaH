@@ -57,7 +57,9 @@
             </ul>
           </div>
           <div class="header_nav_item">
-            <img class="header_icon" src="images/icon1.png">
+            @if(Auth::user()->images)
+            <img class="header_icon" src="{{ asset('images/' .  Auth::user()->images) }}" alt="ユーザーアイコンです">
+            @endif
           </div>
         </div>
       </div>
