@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 //ストレージファザード使用できるようになる
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Contracts\Validation\ImplicitRule;
+use Illuminate\Support\Facades\Rule;
+
 use App\Follow;
 use App\User;
 use App\Post;
@@ -32,7 +33,7 @@ class UsersController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'username'  => 'required|min:2|max:12',
-            'mail' => ['required|min:5|max:40|mail', Rule::unique('users')->ignore(Auth::id())],
+            'mail' => 'required|min:5|max:40|mail|unique:users->ignore(Auth::id())',
             'password' => 'min:8|max:20|confirmed|alpha_num',
             'password_confirmation' => 'min:8|max:20|alpha_num',
             'bio' => 'max:150',
