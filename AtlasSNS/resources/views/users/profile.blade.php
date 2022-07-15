@@ -1,11 +1,25 @@
 @extends('layouts.login')
 
+<!-- プロフィール編集 -->
+
 @section('content')
 <div class="container">
   <div class="">
+    <!-- エラーメッセージ表示 -->
+    @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+    @endif
     <div class="">
-      <div class="">
-        <img src="{{ asset('images/' .  Auth::user()->images) }}" alt="ユーザーアイコンです">
+      <div class="flex">
+        <div>
+          <img src="{{ asset('images/' .  Auth::user()->images) }}" alt="ユーザーアイコンです">
+        </div>
         <div class="">
           <form action="/updateProfile" method="POST" enctype="multipart/form-data">
             @csrf
@@ -21,7 +35,7 @@
             <input type="password" id="password" name="password" value="" />
             <!--パスワード確認 -->
             <label for="password_confirm">password&nbsp;</label>
-            <input type="password" id="password_confirm" name="password_confirm" value="" /><br>
+            <input type="password" id="password_confirm" name="password_confirmation" value="" /><br>
             <!-- 自己紹介 -->
             <label for="bio">bio</label>
             <input id="bio" name="bio" value="{{ $users->bio  }}" class="">

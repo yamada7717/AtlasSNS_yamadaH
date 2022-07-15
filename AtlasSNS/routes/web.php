@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('post/{id}/delete','PostsController@delete');
 
   Route::get('/profile','UsersController@profile');
+  Route::get('/other-profile/{id}','UsersController@otherProfile')->name('/other-profile');
   Route::get('/search','UsersController@search');
   Route::get('/searchList','UsersController@searchList');
   Route::post('/updateProfile','UsersController@updateProfile');

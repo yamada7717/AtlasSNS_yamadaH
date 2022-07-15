@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<!-- レイアウトページ -->
 <html>
 <head>
   <meta charset="utf-8" />
@@ -15,6 +17,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/e2f018457c.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <link rel="stylesheet" href="{{ asset('js/script.js') }} ">
   <!--スマホ,タブレット対応-->
@@ -27,14 +30,13 @@
   <!--iphoneのアプリアイコン指定-->
   <link rel="apple-touch-icon-precomposed" href="画像のURL" />
   <!--OGPタグ/twitterカード-->
-
 </head>
 <body>
   <header>
     <div class="header_inner">
       <div class="header_list">
         <div class="header_item">
-          <a href="/top"><img src="images/atlas.png" class="header_item_img"></a>
+          <a href="/top"><img src="{{ asset('images/atlas.png')}}" class="header_item_img"></a>
         </div>
         <div class="header_nav_list">
           <div class="header_nav_item">
@@ -50,7 +52,7 @@
               <div class="ac-content">
                 <div class="ac_content_item">
                   <li><a href="/top" class="ac_item_link home">HOME</a></li>
-                  <li class="profile"><a href="/profile" class="ac_item_link profile">プロフィール編集</a></li>
+                  <li class="profile"><a href="/profile" class="ac_item_link edit"><span class="edit">プロフィール編集</span></a></li>
                   <li><a href="/logout" class="ac_item_link logout">ログアウト</a></li>
                 </div>
               </div>
@@ -66,25 +68,32 @@
     </div>
   </header>
   <div class="content_wrapper">
-    <div>
-      @yield('content')
-    </div>
-
-    <div id="side-bar" class="side_bar_item">
-      <div id="confirm">
-        <p>{{Auth::user()->username}}さんの</p>
-        <div>
-          <p>フォロー数</p>
+    <div id="side-bar" class="wrapper">
+      <div class="inner">
+        @yield('content')
+      </div>
+      <div class="wrapper_item">
+        <div class="side_item">
+          <p>{{Auth::user()->username}}さんの</p>
+        </div>
+        <div class="side_item">
+          <p class="side_count">フォロー数</p>
           <p>{{ Auth::user()->follows()->where('following_id', Auth::id())->get()->count() }}名</p>
         </div>
-        <p class="btn btn-primary"><a href="/followList">フォローリスト</a></p>
-        <div>
-          <p>フォロワー数</p>
+        <div class="side_item">
+          <p class="side_link btn btn_color"><a href="/followList">フォローリスト</a></p>
+        </div>
+        <div class="side_item">
+          <p class="side_count">フォロワー数</p>
           <p>{{ Auth::user()->follower()->where('followed_id', Auth::id())->get()->count() }}名</p>
         </div>
-        <p class="btn btn-primary"><a href="/followerList">フォロワーリスト</a></p>
+        <div class="side_item">
+          <p class="side_link btn btn_color"><a href="/followerList">フォロワーリスト</a></p>
+        </div>
+        <div class="side_item_search">
+          <p class="side_link_search btn btn_color"><a href="/search">ユーザー検索</a></p>
+        </div>
       </div>
-      <p class="btn btn-primary"><a href="/search">ユーザー検索</a></p>
     </div>
   </div>
 

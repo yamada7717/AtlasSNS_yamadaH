@@ -12,21 +12,22 @@ use App\Post;
 
 class FollowsController extends Controller
 {
-    //
     public function followList(){
         $posts = Post::get();
         $following_id = Auth::user()->follows()->pluck('followed_id');
         $posts = Post::with('user')->whereIn('user_id', $following_id)->get();
-        return view('follows.followList',compact('posts'));
+        //フォロー画像一覧の為user,
+        $users = User::get();
+        return view('follows.followList',compact('posts','users'));
     }
+
     public function followerList(){
         $posts = Post::get();
-        $followed_id = Auth::user()->follows()->pluck('following_id');
+        $followed_id = Auth::user()->follower()->pluck('following_id');
         $posts = Post::with('user')->whereIn('user_id', $followed_id)->get();
-        return view('follows.followerList',compact('posts'));
+        $users = User::whereIn('id',$followed_id)->get();
+        return view('follows.followerList',compact('posts','users'));
     }
-
-
 
      // フォロー
     public function follow(Request $request){
