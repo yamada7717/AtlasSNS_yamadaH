@@ -1,10 +1,200 @@
 @charset "UTF-8";
 
-html{
+html {
     height: 100%;
 }
 
-body{
-  background: rgb(254, 255, 0);
-  background: linear-gradient(0deg, rgba(254, 255, 0, 1) 0%, rgba(45, 143, 253, 1) 63%);
+body {
+    background: rgb(254, 255, 0);
+    background: linear-gradient(0deg, rgba(254, 255, 0, 1) 0%, rgba(45, 143, 253, 1) 63%);
+    font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3",
+        "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Droid Sans",
+        sans-serif;
+    font-weight: 500;
+    max-width: 1240px;
+    ;
 }
+
+/* ヘッダー */
+
+header {
+    margin-top: 100px;
+    margin-bottom: 70px;
+}
+
+.inner {
+    width: 900px;
+    margin: 0 auto;
+    margin-left: 680px;
+}
+
+.header_img {
+    margin-left: 130px;
+}
+
+.logo_img {
+    width: 200px;
+}
+
+.header_title {
+    color: #fff;
+    font-size: 40px;
+    margin-left: 20px;
+}
+
+/* ヘッダー終了 */
+
+/* ログイン画面 */
+
+.title {
+    color: #fff;
+    font-size: 20px;
+    margin-left: 60px;
+    margin-top: 50px;
+}
+
+.content {
+    width: 320px;
+    height: 400px;
+    border: solid 1px #727272;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.12);
+    padding: 30px 20px;
+    margin-left: 50px;
+}
+
+.content>div {
+    color: #fff;
+}
+
+.login_title {
+    margin: 10px;
+    font-size: 18px;
+}
+
+.username {
+    width: 300px;
+    height: 40px;
+    border: solid 1px #727272;
+    border-radius: 20px;
+}
+
+.mail {
+    width: 300px;
+    height: 40px;
+    border: solid 1px #727272;
+    border-radius: 20px;
+}
+
+.password {
+    width: 300px;
+    height: 40px;
+    border: solid 1px #727272;
+    border-radius: 20px;
+}
+
+.login_btn {
+    margin: 15px 0px 10px 170px;
+    padding: 12px 35px;
+    font-size: 20px;
+    color: #fff;
+    background: #FF4500;
+    border: solid 1px #727272;
+    border-radius: 15px;
+}
+
+.register_link {
+    color: #fff;
+    margin: 50px 0px 10px 60px;
+}
+
+/* ログイン画面終了 */
+
+
+.register_content {
+    width: 320px;
+    height: 550px;
+    border: solid 1px #727272;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.12);
+    padding: 30px 20px;
+    margin-left: 50px;
+}
+
+.register_content>div {
+    color: #fff;
+}
+
+.register_btn {
+    margin: 15px 0px 10px 130px;
+    padding: 12px 35px;
+    font-size: 20px;
+    color: #fff;
+    background: #FF4500;
+    border: solid 1px #727272;
+    border-radius: 15px;
+    letter-spacing: 1px;
+}
+
+
+.login_link {
+    color: #fff;
+    margin: 50px 0px 10px 90px;
+}
+
+
+/*  新規ユーザー登録した際の画面 */
+
+.added_content {
+    width: 320px;
+    height: 250px;
+    border: solid 1px #727272;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.12);
+    padding: 30px 20px;
+    margin-left: 50px;
+}
+
+.added_content>p {
+    color: #fff;
+}
+
+
+.added_link {
+    margin: 50px 0px 20px 60px;
+}
+
+.added_btn {
+    padding: 12px 20px;
+    font-size: 20px;
+    color: #fff;
+    background: #FF4500;
+    border: solid 1px #727272;
+    border-radius: 15px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.added_name {
+    margin: 30px 0px 10px 120px;
+    font-size: 18px;
+}
+
+.added_Atlas {
+    margin-left: 65px;
+    font-size: 18px;
+}
+
+.added_title {
+    margin: 30px 20px 0px 20px;
+    font-size: 18px;
+}
+
+.added_item {
+    color: #fff;
+    padding: 3px;
+    font-size: 19px;
+}
+
+
+/*  新規ユーザー登録した際の画面終了 */

@@ -21,10 +21,12 @@
 </head>
 <body>
   <header>
-    <h1><img src="{{asset('images/atlas.png')}}"></h1>
-    <p>Social Network Service</p>
+    <div class="inner">
+      <h1 class="header_img"><img src="{{asset('images/atlas.png')}}"  class="logo_img"></h1>
+      <p class="header_title">Social Network Service</p>
+    </div>
   </header>
-  <div id="container" class="">
+  <div id="container" class="inner">
     @yield('content')
   </div>
   <script src="JavaScriptファイルのURL"></script>

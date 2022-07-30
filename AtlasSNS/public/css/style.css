@@ -94,7 +94,9 @@ body {
     margin-left: 10px;
 }
 
-.header_nav_item>img {}
+.header_nav_icon {
+    margin-left: 10px;
+}
 
 .header_nav_user {
     color: #fff;
@@ -126,10 +128,10 @@ body {
     z-index: 100;
     position: absolute;
     /* ヘッダーの高さと同じする */
-    top: 90px;
+    top: 77px;
     right: 5%;
     transform: translateX(50%);
-    border: 2px solid #186AC9;
+    border: 1px solid #186AC9;
 }
 
 .ac_content_item {
@@ -347,7 +349,7 @@ a {
 
 /* フォロワーリスト */
 .follower_user {
-    margin: ;
+    /* margin: ; */
 }
 
 .follower_user>a>img {
@@ -369,6 +371,7 @@ a {
 
 .user_name {
     margin-left: 180px;
+    margin-bottom: 35px;
 }
 
 .user_bio {
@@ -387,6 +390,7 @@ a {
 
 .search_form {
     padding-left: 250px;
+    padding-bottom: 25px;
     border-bottom: 2px solid #727272;
 }
 
@@ -414,3 +418,48 @@ a {
 }
 
 /* 検索ぺーじ終了 */
+
+/* ユーザープロフィール更新 */
+.contact-img {}
+
+.contact-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.item {
+    width: 100%;
+}
+
+.contact-title {
+    padding: 5px 10px;
+}
+
+.contact-item>input {
+    background: #eee;
+    border: solid 1px #AAAAAA;
+    width: 485px;
+}
+
+.icon_select {
+    /* display: none; */
+}
+
+.file_upload {
+    color: #AAAAAA;
+    /* ラベルテキストの色を指定する */
+    background-color: #eee;
+    /* ラベルの背景色を指定する */
+    padding: 20px 90px;
+    /* ラベルとテキスト間の余白を指定する */
+    border: solid 1px #AAAAAA;
+    /* ラベルのボーダーを指定する */
+}
+
+.btn-update {
+    margin-left: 120px;
+    padding: 10px 70px;
+}
+
+/* ユーザープロフィール更新終了 */
