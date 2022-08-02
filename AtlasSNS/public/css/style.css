@@ -194,15 +194,16 @@ a {
     transform: translate(-50%, -50%) rotate(135deg);
 }
 
-/* アコーディオン終了 */
-
-/* ヘッダー終了 */
-
 /* 下向き矢印クリック後、上向きに回転する */
 .icon.open:before {
     top: 56%;
     transform: translate(-50%, -50%) rotate(-45deg);
 }
+
+/* アコーディオン終了 */
+
+/* ヘッダー終了 */
+
 
 /* モーダル機能 */
 /* 必要に応じて編集しご自身でSNS課題のレイアウトのようにカスタマイズしてください。 */
@@ -215,7 +216,7 @@ a {
 }
 
 .modal__bg {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.15);
     height: 100vh;
     position: absolute;
     width: 100%;
@@ -224,11 +225,25 @@ a {
 .modal__content {
     background: #fff;
     left: 50%;
-    padding: 40px;
+    padding: 50px 40px;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
+    width: 55%;
+    border-radius: 15px;
+}
+
+.modal_post {
+    width: 100%;
+    padding: 100px 0;
+}
+
+.modal_edit {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin-top: 15px;
+    margin-left: 95%;
 }
 
 /* モーダル終了 */

@@ -50,9 +50,9 @@
       @csrf
       <textarea name="upPost" class="modal_post"></textarea>
       <input type="hidden" name='id' class="modal_id">
-      <input type="image" src="images/edit.png" alt="更新する" name="upPost">
+      <input type="image" src="images/edit.png" alt="更新する" name="upPost" class="modal_edit">
     </form>
-    <a class="js-modal-close" href="">閉じる</a>
+    <a class="js-modal-close" href=""></a>
   </div>
 </div>
 </div>

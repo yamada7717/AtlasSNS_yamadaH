@@ -12,6 +12,5 @@
     <a href="/login" class="added_btn">ログイン画面へ</a>
   </div>
 </div>
-{{Form::close()}}
 
 @endsection
